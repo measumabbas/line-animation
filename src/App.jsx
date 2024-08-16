@@ -1,13 +1,15 @@
-
 import './App.css'
-import AnimatedLineAndDot from './Components/Animated'
+import Stars from './Components/Particles'
 
 function App() {
-
   return (
-   <>
-   <AnimatedLineAndDot/>
-   </>
+    <>
+      <div style={{ height: '500px'}}>
+        <Stars />
+      </div>
+      hello from outer side
+      {/* <img src="/main.png" alt="" /> */}
+    </>
   )
 }
 
