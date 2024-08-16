@@ -23,17 +23,17 @@ const SnakePathAnimation = () => {
 
     const animate = () => {
       let start = null;
+      const duration = 10000; // Duration of one full animation cycle
 
       const step = (timestamp) => {
         if (!start) start = timestamp;
         const elapsed = timestamp - start;
 
-        // Slow down the animation by increasing the duration (e.g., 8000 ms)
-        const duration = 12000; // Duration of one full animation cycle
-        const progress = (elapsed % duration) / duration;
+        let progress = Math.min((elapsed / duration), 1); // Ensure progress doesn't exceed 1
         const drawLength = progress * pathLength;
 
         // Adjust strokeDasharray and strokeDashoffset
+        snake.style.transform = 'translateY(3px)'
         snake.style.strokeDasharray = `${pathLength}`;
         snake.style.strokeDashoffset = pathLength - drawLength;
 
@@ -41,11 +41,15 @@ const SnakePathAnimation = () => {
 
         // Constrain the dot position within the bounding box of the main path
         const constrainedX = Math.max(bbox.x, Math.min(bbox.x + bbox.width, point.x));
-        const constrainedY = Math.max(bbox.y, Math.min(bbox.y + bbox.height, point.y)) - 1; // Reduce y-axis by 5px
+        const constrainedY = Math.max(bbox.y, Math.min(bbox.y + bbox.height, point.y)) - -1; // Reduce y-axis by 5px
 
         dot.style.transform = `translate(${constrainedX}px, ${constrainedY}px)`;
-
-        requestAnimationFrame(step);
+        if (String(progress.toPrecision(2)) === String(0.49)) {
+          start = 0
+          requestAnimationFrame(step);
+        }else{
+          requestAnimationFrame(step);
+        }
       };
 
       requestAnimationFrame(step);
@@ -64,7 +68,6 @@ const SnakePathAnimation = () => {
         fill="none"
         className="absolute top-0 left-0"
       >
-        
         {/* Main Path */}
         <path
           ref={pathRef}
@@ -75,19 +78,20 @@ const SnakePathAnimation = () => {
           fill="url(#paint)"
         />
         <defs>
-<linearGradient id="paint" x1="859.421" y1="-6.49994" x2="227.988" y2="477.426" gradientUnits="userSpaceOnUse">
-<stop offset="0.0524773" stopColor="#1C1644"/>
-<stop offset="1" stopColor="#2F1863"/>
-</linearGradient>
-</defs>
+          <linearGradient id="paint" x1="859.421" y1="-6.49994" x2="227.988" y2="477.426" gradientUnits="userSpaceOnUse">
+            <stop offset="0.0524773" stopColor="#1C1644" />
+            <stop offset="1" stopColor="#2F1863" />
+          </linearGradient>
+        </defs>
 
         <defs>
-    {/* Linear Gradient Definition */}
-    <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stopColor="#5108EB" />
-      <stop offset="100%" stopColor="#A035D1" />
-    </linearGradient>
-  </defs>
+          {/* Linear Gradient Definition */}
+          <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="0%" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#5108EB" />
+            <stop offset="100%" stopColor="#A035D1" />
+          </linearGradient>
+        </defs>
+
         {/* Snake Line */}
         <path
           ref={snakeRef}
@@ -100,7 +104,7 @@ const SnakePathAnimation = () => {
             clipPath: `inset(${bbox.y}px ${1440 - bbox.x - bbox.width}px ${421 - bbox.y - bbox.height}px ${bbox.x}px)`
           }}
         />
-        
+
         {/* Moving Dot */}
         <circle
           ref={dotRef}
@@ -111,9 +115,9 @@ const SnakePathAnimation = () => {
           className="absolute transform -translate-x-1/2 -translate-y-1/2"
         />
         <defs>
-          <linearGradient id="paint0_linear" x1="23.4628" y1="0.0830078" x2="14.4628" y2="23.083" gradientUnits="userSpaceOnUse">
-            <stop  stopColor="#A035D1"/>
-            <stop offset="1" stopColor="#5108EB"/>
+          <linearGradient id="paint0_linear" x1="23.4628" y1="0.0830078" x2="14.4628" y2="25.083" gradientUnits="userSpaceOnUse">
+            <stop offset="0.0524773" stopColor="#C610E8" />
+            <stop offset="1" stopColor="#E210CF" />
           </linearGradient>
         </defs>
       </svg>
