@@ -1,3 +1,35 @@
-#tsparticles{
-    height: 100%;
+#tsparticles {
+  height: 100%;
+}
+
+.border-test {
+  width: 300px;
+  margin: 20px auto;
+  padding: 5px;
+  cursor: pointer;
+  /* border: 2px solid transparent; */
+  /* transition: all .5s ease; */
+}
+
+.border-test:hover {
+  background: radial-gradient(
+        circle at 100% 100%,
+        #ffffff 0,
+        #ffffff 6px,
+        transparent 6px
+      )
+      0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px)
+      100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px)
+      0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100%
+      100%/8px 8px no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
+      calc(100% - 16px) no-repeat,
+    linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 16px)
+      calc(100% - 4px) no-repeat,
+    linear-gradient(90deg, #e534d5 0%, #7a8ef5 99%);
+  border-radius: 8px;
+  /* box-sizing: border-box; */
 }

@@ -7,7 +7,9 @@ function App() {
       <div style={{ height: '500px'}}>
         <Stars />
       </div>
-      hello from outer side
+      <div className='border-test'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, velit maxime consequatur, eum nihil mollitia, suscipit laboriosam ipsam neque quam officia eligendi impedit. Consectetur odio repudiandae dolorum nesciunt facere similique fugit, cumque ratione alias nam ducimus perferendis hic quam sapiente corporis suscipit deserunt esse harum et enim dolor nulla voluptates.
+      </div>
       {/* <img src="/main.png" alt="" /> */}
     </>
   )
